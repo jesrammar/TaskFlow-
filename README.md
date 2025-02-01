@@ -1,2 +1,2 @@
 # TaskFlow-
-Proyecto de login y gestión de tareas desarrollado por Jesrammar. Incluye registro, inicio de sesión y una lista de tareas para organizar actividades de manera eficiente.
+Proyecto full stack con autenticación basada en JWT, backend en Node.js y frontend en React. Permite a los usuarios registrarse, iniciar sesión y administrar una lista de tareas.
