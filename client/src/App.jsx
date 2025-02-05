@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 
 function App(){
@@ -6,8 +8,8 @@ function App(){
     <BrowserRouter>
         <Routes>
           <Route path="/" element= {<h1>Home Page</h1>}/>
-          <Route path="/login" element= {<h1>Login</h1>}/>
-          <Route path="/register" element= {<h1>Register</h1>}/>
+          <Route path="/login" element= {<Login/>}/>
+          <Route path="/register" element= {<Register/>}/>
           <Route path="/tasks" element= {<h1>Tasks</h1>}/>
           <Route path="/add-task" element= {<h1>Add Task</h1>}/>
           <Route path="/tasks/:id" element= {<h1>Update Task</h1>}/>
