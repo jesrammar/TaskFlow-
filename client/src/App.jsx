@@ -15,7 +15,6 @@ function App(){
           <Route path="/tasks/:id" element= {<h1>Update Task</h1>}/>
           <Route path="/profile" element= {<h1>Prifile</h1>}/>
         </Routes>
-      <h1 className="text-4xl font-bold">Hola mundo</h1>
     </BrowserRouter>
   )
 }
