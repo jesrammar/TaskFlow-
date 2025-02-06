@@ -10,6 +10,8 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:5173',
+    allowedHeaders: ['Content-Type', 'Authorization'], // Asegúrate de que 'Authorization' esté permitida
+    credentials: true, // Si usas cookies
 }));
 
 app.use(morgan('dev'));

@@ -7,7 +7,10 @@ import { createdAccessToken } from '../libs/jwt.js';
 export const register = async (req, res) => {
     const {username, email, password} = req.body;
 
-    try{
+    try{    
+
+        const userFound = await User.findOne({email});
+        if (userFound) return res.status(400).json(["the email is already in use"]);
 
     const passwordHash = await bcrypt.hash(password, 10);        // esto nos hashea la contraseña
 
@@ -23,15 +26,24 @@ export const register = async (req, res) => {
 
     const token = await createdAccessToken({id: userSaved._id});
 
-    res.cookie("token", token);
+    
+
+     // Establece la cookie con el token (si aún quieres usarlo)
+     res.cookie("token", token, {
+        httpOnly: true, // Asegura que la cookie no sea accesible desde JavaScript
+        secure: process.env.NODE_ENV === 'production', // Solo en producción con HTTPS
+        sameSite: 'None', // Para que la cookie funcione en entornos CORS
+        maxAge: 24 * 60 * 60 * 1000 // 24 horas
+    });
+
+    
     res.json({
         id: userSaved._id,
         username: userSaved.username,
         email: userSaved.email,
         createdAt: userSaved.createdAt,
         updatedAt: userSaved.updatedAt,
-        token: token,
-
+        
     })
 
     console.log(newUser);
@@ -86,7 +98,7 @@ export const logout = async (req, res) => {
 
 
 export const profile = async (req, res) => {
-    const userFound = User.findById(req.user.id);
+    const userFound = await User.findById(req.user.id);
     if(!userFound) return res.status(404).json({message : "User Not Found"});
     return res.json({
         id: userFound._id,
