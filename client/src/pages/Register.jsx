@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form'
 import { useAuth} from '../context/authContext';
 import { useEffect } from 'react';
-import {Navigate, useNavigate} from 'react-router-dom'
+import {Navigate, useNavigate, Link} from 'react-router-dom'
 
 
 
@@ -72,7 +72,9 @@ function Register(){
 
 
             </form>
-
+            <p className='flex gap-x-2 justify-between'>
+                Already have you an account? <Link to= "/login" className='text-sky-500'>Login</Link>
+            </p>
 
         </div>
     )
